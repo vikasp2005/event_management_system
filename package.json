@@ -1,0 +1,28 @@
+{
+  "name": "event_management_system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"gnome-terminal -- npm run frontend\"  \"gnome-terminal -- npm run backend\" ",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && nodemon server.js",
+    "dev": "concurrently \"npm run dev-frontend\" && \"npm run dev-backend\" ",
+    "dev-frontend": "cd frontend && nodemon server.js",
+    "dev-backend": "cd backend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "event_management_system": "file:",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  }
+}

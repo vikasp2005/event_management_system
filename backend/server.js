@@ -2,10 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import { connectDB, configureSession } from './db/connectdb.js';
+import cookieParser from 'cookie-parser';
+import { connectDB, } from './db/connectdb.js';
+import { configureSession } from './middleware/configureSession.js';
 import AdminRouter from './Routers/admin.routes.js';
 import authRouter from './Routers/auth.routes.js'; // Import auth routes
-import cookieParser from 'cookie-parser';
 
 
 dotenv.config();

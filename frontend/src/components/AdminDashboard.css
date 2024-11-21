@@ -1,47 +1,53 @@
 .admin-dashboard {
-    font-family: Arial, sans-serif;
     padding: 20px;
-    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
 }
 
-h1 {
-    color: #444;
-    text-align: center;
+.add-user-form {
+    margin-bottom: 20px;
+}
+
+.add-user-form h2 {
+    margin-bottom: 10px;
+}
+
+.add-user-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-user-form form input,
+.add-user-form form select,
+.add-user-form form button {
+    padding: 10px;
+    font-size: 14px;
 }
 
 .users-table {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
 }
 
 .users-table th,
 .users-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
 }
 
 .users-table th {
-    background-color: #f0f0f0;
-    font-weight: bold;
+    background-color: #f4f4f4;
 }
 
 .delete-button {
-    background-color: #e74c3c;
     color: white;
+    background-color: red;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
 .delete-button:hover {
-    background-color: #c0392b;
-}
-
-select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    background-color: darkred;
 }

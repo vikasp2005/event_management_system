@@ -50,3 +50,11 @@
     background-color: #ff527b;
     transform: scale(1.05);
 }
+
+
+.login-error {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    text-align: center;
+}

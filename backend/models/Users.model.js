@@ -4,6 +4,7 @@ const participantSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         rollNo: { type: String, required: true, unique: true },
+        email: { type: String, required: true, unique: true },
         dept: { type: String, required: true },
         password: { type: String, required: true },
         yearOfStudy: { type: Number, required: true },
@@ -21,7 +22,6 @@ const eventCoordinatorSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         clubName: { type: String, required: true },
-        role: { type: String, required: true }, // Example: President, Member, etc.
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
     },

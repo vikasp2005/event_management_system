@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 
 const Login = () => {
@@ -7,22 +8,25 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:5000/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password, role }),
-        });
+        try {
+            const response = await axios.post(
+                `http://localhost:5000/auth/login`,
+                { email, password, role },
+                { withCredentials: true } // Include cookies in the request
+            );
 
-        const data = await response.json();
-        if (response.ok) {
-            document.cookie = `session=${data.token}; path=/`;
-            navigate(`/${role}/dashboard`);
-        } else {
-            alert(data.message || 'Login failed');
+            if (response.status === 200) {
+                // Navigate to the dashboard specific to the role
+                navigate(`/${role}/dashboard`);
+            }
+         } catch (err) {
+            console.error('Login error:', err);
+            setError('An error occurred. Please try again.');
         }
     };
 
@@ -31,6 +35,7 @@ const Login = () => {
             <div className="login-card">
                 <h1 className="login-title">{role.charAt(0).toUpperCase() + role.slice(1)} Login</h1>
                 <form onSubmit={handleLogin} className="login-form">
+                    {error && <p className="login-error">{error}</p>}
                     <input
                         type="email"
                         placeholder="Email"

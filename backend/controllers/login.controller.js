@@ -1,6 +1,10 @@
+import { v4 as uuidv4 } from 'uuid'; // UUID for unique session ID
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { Participant,  EventCoordinator,  VenueIncharge , Admin } from "../models/Users.model.js";
+import { Participant, EventCoordinator, VenueIncharge, Admin } from "../models/Users.model.js";
+import { Session } from '../models/Session.model.js';
+import mongoose from "mongoose";
+
+
 
 const roles = {
     participant: Participant,
@@ -9,14 +13,13 @@ const roles = {
     admin: Admin,
 };
 
-// Unified Login Function
 export const login = async (req, res) => {
     const { email, password, role } = req.body;
 
     try {
         // Validate role
         if (!roles[role]) {
-            return res.status(400).json({ message: 'Invalid role' });
+            return res.status(400).json({ message: 'Invalid role.' });
         }
 
         // Find user in the corresponding model
@@ -24,30 +27,63 @@ export const login = async (req, res) => {
         const user = await Model.findOne({ email });
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'User not found.' });
         }
 
         // Compare password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
-        
-        // Create session token
-        const token = jwt.sign({ id: user._id, role }, process.env.JWT_SECRET, {
-            expiresIn: '1d',
+        // Generate a session ID
+        const sessionId = uuidv4();
+
+        // Save the session in the database
+        await Session.create({
+            sessionId,
+            userId: user._id,
+            role,
         });
 
-        res.cookie('session', token, {
+        // Send the session ID as a secure cookie
+        res.cookie('session_id', sessionId, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production', // Secure cookies in production
+            sameSite: 'strict',
+            maxAge: 1000 * 60 * 60 * 24, // 1 day
         });
 
-        res.json({ message: 'Login successful', token });
-
+        res.status(200).json({ message: 'Login successful.' });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Server error.' });
+    }
+};
+
+
+export const logout = async (req, res) => {
+    const sessionId = req.cookies.session_id;
+
+    if (!sessionId) {
+        return res.status(400).json({ message: 'No active session to log out.' });
+    }
+
+    try {
+        // Delete the session from the database
+        await Session.deleteOne({ sessionId });
+
+        // Clear the session cookie
+        res.clearCookie('session_id', {
+            path: '/',
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Ensure secure cookies in production
+            sameSite: 'strict',
+        });
+
+        res.status(200).json({ message: 'Logged out successfully.' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to log out.' });
     }
 };

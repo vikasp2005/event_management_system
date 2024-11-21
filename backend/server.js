@@ -5,15 +5,27 @@ import dotenv from 'dotenv';
 import { connectDB, configureSession } from './db/connectdb.js';
 import AdminRouter from './Routers/admin.routes.js';
 import authRouter from './Routers/auth.routes.js'; // Import auth routes
+import cookieParser from 'cookie-parser';
+
 
 dotenv.config();
+
 
 const app = express();
 const port = process.env.PORT;
 
+// Allow credentials and specific origin
+const corsOptions = {
+    origin: 'http://localhost:3000', // Frontend URL
+    credentials: true,              // Allow cookies and credentials
+};
+
+app.use(cors(corsOptions));
+
+// Other middlewares like bodyParser or express.json()
 app.use(express.json());
-app.use(cors());
 app.use(morgan('dev'));
+app.use(cookieParser())
 
 // Connect to MongoDB
 connectDB();

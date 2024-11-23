@@ -1,17 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'; // UUID for unique session ID
 import bcrypt from 'bcrypt';
-import { Participant, EventCoordinator, VenueIncharge, Admin } from "../models/Users.model.js";
 import { Session } from '../models/Session.model.js';
-import mongoose from "mongoose";
-
-
-
-const roles = {
-    participant: Participant,
-    event_coordinator: EventCoordinator,
-    venue_incharge: VenueIncharge,
-    admin: Admin,
-};
+import { roles } from '../utils/roles.js';
 
 export const login = async (req, res) => {
     const { email, password, role } = req.body;
@@ -60,6 +50,7 @@ export const login = async (req, res) => {
         res.status(500).json({ message: 'Server error.' });
     }
 };
+
 
 
 export const logout = async (req, res) => {

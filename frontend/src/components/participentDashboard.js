@@ -20,7 +20,7 @@ const ParticipantSymposiumDashboard = () => {
     }, []);
 
     const handleSymposiumClick = (id) => {
-        navigate(`/symposium/${id}/events`);
+        navigate(`/participant/symposium/${id}/events`);
     };
 
     return (

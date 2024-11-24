@@ -3,11 +3,12 @@ import axios from 'axios';
 
 const RegisteredEvents = () => {
     const [registeredEvents, setRegisteredEvents] = useState([]);
+    
 
     useEffect(() => {
         const fetchRegisteredEvents = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/participant/participant123/registered-events`);
+                const response = await axios.get(`http://localhost:5000/api/participant//registered-events`,{withCredentials : true});
                 setRegisteredEvents(response.data);
             } catch (error) {
                 console.error('Error fetching registered events:', error);
@@ -16,6 +17,9 @@ const RegisteredEvents = () => {
 
         fetchRegisteredEvents();
     }, []);
+
+
+   
 
     return (
         <div className="p-6">
@@ -30,6 +34,7 @@ const RegisteredEvents = () => {
                             Date: {new Date(event.date).toLocaleDateString()} at{' '}
                             {new Date(event.date).toLocaleTimeString()}
                         </p>
+                        
                     </div>
                 ))}
             </div>

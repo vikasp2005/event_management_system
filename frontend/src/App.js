@@ -6,6 +6,13 @@ import AdminDashboard from './components/AdminDashboard';
 import AdminManageDepartments from './components/AdminManageDepartments';
 import ManageVenue from './components/ManageVenue';
 import Navbar from './components/Navbar';
+import EventDashboard from './components/EventDashboard';
+import ManageEvents from './components/ManageEvents';
+import ManageSymposiums from './components/ManageSymposiums';
+import EditSymposium from './components/EditSymposium';
+import CreateEvent from './components/CreateEvent';
+import EditEvent from './components/EditEvent';
+
 import axios from 'axios';
 
 const App = () => {
@@ -42,8 +49,17 @@ const App = () => {
                 <Route path="/" element={<RoleSelection />} />
                 <Route path="/login/:role" element={<Login />} />
                 <Route path="/participant/dashboard" element={<h1>Participant Dashboard</h1>} />
-                <Route path="/event_coordinator/dashboard" element={<h1>Event Coordinator Dashboard</h1>} />
-                <Route path="/venue_incharge/dashboard" element={<h1>Venue In-Charge Dashboard</h1>} />
+                <Route path="/event_coordinator/dashboard" element={<ManageSymposiums />} />
+
+                <Route path="/event_coordinator/create-symposium" element={<EventDashboard />} />
+                <Route path="/event_coordinator/edit-symposium/:id" element={<EditSymposium />} />
+
+
+                <Route path="/event_coordinator/symposium/:symposiumId/events" element={<ManageEvents />} />
+                <Route path="/event_coordinator/create-event/:symposiumId" element={<CreateEvent />} />
+                <Route path="/event_coordinator/edit-event/:eventId" element={<EditEvent />} />
+
+
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/admin/manage-departments" element={<AdminManageDepartments />} />
                 <Route path="/admin/manage-venue" element={<ManageVenue />} />

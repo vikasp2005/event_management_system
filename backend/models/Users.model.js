@@ -32,18 +32,6 @@ export const EventCoordinator = mongoose.model('EventCoordinator', eventCoordina
 
 
 
-const venueInchargeSchema = new mongoose.Schema(
-    {
-        name: { type: String, required: true },
-        dept: { type: String, required: true },
-        venueName: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
-    },
-    { timestamps: true }
-);
-
-export const VenueIncharge = mongoose.model('VenueIncharge', venueInchargeSchema);
 
 const adminSchema = new mongoose.Schema(
     {

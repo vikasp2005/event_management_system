@@ -27,6 +27,9 @@ const Navbar = ({ role }) => {
             case 'event_coordinator':
                 return [
                     { name: 'Dashboard', path: '/event_coordinator/dashboard' },
+                    { name: 'Create Symposium', path: '/event_coordinator/create-symposium' },
+
+                    
                     
                 ];
             default:

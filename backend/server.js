@@ -7,6 +7,7 @@ import { connectDB, } from './db/connectdb.js';
 import { configureSession } from './middleware/configureSession.js';
 import AdminRouter from './Routers/admin.routes.js';
 import authRouter from './Routers/auth.routes.js'; // Import auth routes
+import EventRouter from './Routers/event.routes.js'; // Import event routes
 
 
 dotenv.config();
@@ -36,6 +37,7 @@ configureSession(app);
 
 
 app.use('/api/admin', AdminRouter);
+app.use('/api/event', EventRouter);
 app.use('/auth', authRouter); // Use auth routes
 
 app.get('/', (req, res) => {

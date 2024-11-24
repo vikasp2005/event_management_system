@@ -15,7 +15,6 @@ const RoleSelection = () => {
             <div className="buttons-container">
                 <button onClick={() => handleRoleSelect('participant')} className="role-button">Participant</button>
                 <button onClick={() => handleRoleSelect('event_coordinator')} className="role-button">Event Coordinator</button>
-                <button onClick={() => handleRoleSelect('venue_incharge')} className="role-button">Venue In-Charge</button>
                 <button onClick={() => handleRoleSelect('admin')} className="role-button">Admin</button>
             </div>
         </div>

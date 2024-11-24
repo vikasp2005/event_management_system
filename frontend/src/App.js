@@ -12,6 +12,9 @@ import ManageSymposiums from './components/ManageSymposiums';
 import EditSymposium from './components/EditSymposium';
 import CreateEvent from './components/CreateEvent';
 import EditEvent from './components/EditEvent';
+import ParticipantSymposiumDashboard from './components/participentDashboard';
+import SymposiumEvents from './components/participentevents';
+import RegisteredEvents from './components/RegisteredEvents';
 
 import axios from 'axios';
 
@@ -65,7 +68,10 @@ const App = () => {
                 <Route path="/admin/manage-venue" element={<ManageVenue />} />
 
 
-                
+                <Route path="/participant/dashboard" element={<ParticipantSymposiumDashboard />} />
+                <Route path="/participant/symposium/:symposiumid/events" element={<SymposiumEvents />} />
+                <Route path="/participant/registered" element={<RegisteredEvents />} />
+
             </Routes>
         </Router>
     );

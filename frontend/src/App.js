@@ -16,7 +16,7 @@ import EditEvent from './components/EditEvent';
 import axios from 'axios';
 
 const App = () => {
-    const [role, setRole] = useState(null);
+    const [role, setRole] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 

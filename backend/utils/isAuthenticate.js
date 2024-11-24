@@ -2,7 +2,6 @@ import { Session } from '../models/Session.model.js';
 
 export const isAuthenticated = async (req, res, next) => {
     const sessionId = req.cookies.session_id;
-
     if (!sessionId) {
         return res.status(401).json({ message: 'Unauthorized: Please log in.' });
     }

@@ -12,6 +12,10 @@ import ManageSymposiums from './components/ManageSymposiums';
 import EditSymposium from './components/EditSymposium';
 import CreateEvent from './components/CreateEvent';
 import EditEvent from './components/EditEvent';
+import ParticipantSymposiumDashboard from './components/participentDashboard';
+import SymposiumEvents from './components/participentevents';
+import RegisteredEvents from './components/RegisteredEvents';
+import RegisterForEvent from './components/RegisterEventForm';
 
 import axios from 'axios';
 
@@ -29,7 +33,7 @@ const App = () => {
                 setRole(response.data.role);
             } catch (err) {
                 console.error('Error fetching role:', err);
-                setError(err.response?.data?.message || 'Error fetching role');
+                //setError(err.response?.data?.message || 'Error fetching role');
             } finally {
                 setLoading(false);
             }
@@ -48,7 +52,8 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<RoleSelection />} />
                 <Route path="/login/:role" element={<Login />} />
-                <Route path="/participant/dashboard" element={<h1>Participant Dashboard</h1>} />
+
+
                 <Route path="/event_coordinator/dashboard" element={<ManageSymposiums />} />
 
                 <Route path="/event_coordinator/create-symposium" element={<EventDashboard />} />
@@ -65,7 +70,13 @@ const App = () => {
                 <Route path="/admin/manage-venue" element={<ManageVenue />} />
 
 
-                
+                <Route path="/participant/dashboard" element={<ParticipantSymposiumDashboard />} />
+                <Route path="/participant/symposium/:symposiumid/events" element={<SymposiumEvents />} />
+                <Route path="/participant/registered" element={<RegisteredEvents />} />
+                <Route path="/participant/event/:id/register" element={<RegisterForEvent />} />
+
+
+                RegisterForEvent
             </Routes>
         </Router>
     );

@@ -28,10 +28,12 @@ const Navbar = ({ role }) => {
                 return [
                     { name: 'Dashboard', path: '/event_coordinator/dashboard' },
                     { name: 'Create Symposium', path: '/event_coordinator/create-symposium' },
-
-                    
-                    
                 ];
+            case 'participant':
+                    return [
+                        { name: 'Dashboard', path: '/participant/dashboard' },
+                        { name: 'Registered Events', path: '/participant/registered' },
+                    ];
             default:
                 return [];
         }

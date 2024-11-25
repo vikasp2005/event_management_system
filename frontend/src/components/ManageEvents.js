@@ -57,6 +57,12 @@ const ManageEvents = () => {
                             Edit Event
                         </button>
                         <button
+                            onClick={() => navigate(`/event_coordinator/event-participants/${event._id}`)}
+                            className="bg-purple-500 text-white mt-2 px-4 py-1 rounded"
+                        >
+                            View Participants
+                        </button>
+                        <button
                             onClick={() => handleDeleteEvent(event._id)}
                             className="bg-red-500 text-white mt-2 px-4 py-1 rounded"
                         >

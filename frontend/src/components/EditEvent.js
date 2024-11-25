@@ -20,6 +20,17 @@ const EditEvent = () => {
         registrationForm: [],
     });
 
+
+    const formatDateTimeLocal = (dateString) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    };
+
     useEffect(() => {
         const fetchEventDetails = async () => {
             try {
@@ -162,7 +173,7 @@ const EditEvent = () => {
                     type="datetime-local"
                     name="registrationStart"
                     className="w-full border rounded-lg p-2"
-                    value={formData.registrationStart}
+                    value={formData.registrationStart? formatDateTimeLocal(formData.registrationStart) : ""}
                     onChange={handleInputChange}
                     required
                 />
@@ -174,7 +185,7 @@ const EditEvent = () => {
                     type="datetime-local"
                     name="registrationEnd"
                     className="w-full border rounded-lg p-2"
-                    value={formData.registrationEnd}
+                    value={formData.registrationEnd? formatDateTimeLocal(formData.registrationEnd) : ""}
                     onChange={handleInputChange}
                     required
                 />

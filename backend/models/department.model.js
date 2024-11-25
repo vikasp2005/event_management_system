@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 
 const sectionSchema = new mongoose.Schema({
-    name: { type: String, required: true },
+    name: { type: String },
 });
 
 const departmentSchema = new mongoose.Schema({
-    name: { type: String, required: true, unique: true },
-    duration: { type: Number, required: true }, // Course duration in years
+    name: { type: String, unique: true },
+    duration: { type: Number }, // Course duration in years
     sections: [sectionSchema], // Array of sections within the department
 });
 

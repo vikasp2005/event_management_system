@@ -19,6 +19,8 @@ const ParticipantSymposiumDashboard = () => {
         fetchSymposiums();
     }, []);
 
+    
+
     const handleSymposiumClick = (id) => {
         navigate(`/participant/symposium/${id}/events`);
     };
@@ -35,7 +37,9 @@ const ParticipantSymposiumDashboard = () => {
                     >
                         <h2 className="font-bold text-lg">{symposium.name}</h2>
                         <p>{symposium.description}</p>
-                        <p>Date: {new Date(symposium.date).toLocaleDateString()}</p>
+                        <p>StartDate: {new Date(symposium.startDate).toLocaleDateString()}</p>
+                        <p>EndDate: {new Date(symposium.endDate).toLocaleDateString()}</p>
+
                     </div>
                 ))}
             </div>

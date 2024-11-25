@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 
-const Login = () => {
+const Login = ({setRole}) => {
     const { role } = useParams();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -20,10 +20,9 @@ const Login = () => {
                 { withCredentials: true } // Include cookies in the request
             );
 
-            if (response.status === 200) {
-                // Navigate to the dashboard specific to the role
-                navigate(`/${role}/dashboard`);
-            }
+            setRole(role); // Update role in App state
+            navigate(`/${role}/dashboard`, { replace: true }); // Redirect to dashboard
+        
          } catch (err) {
             console.error('Login error:', err);
             setError('An error occurred. Please try again.');

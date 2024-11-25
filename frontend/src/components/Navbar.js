@@ -2,14 +2,16 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Navbar = ({ role }) => {
+const Navbar = ({ role ,setRole }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleLogout = async () => {
         try {
             await axios.post('http://localhost:5000/auth/logout', {}, { withCredentials: true });
-            navigate('/'); // Redirect to the login page after logout
+            setRole(null); // Clear role state
+            navigate('/', { replace: true }); // Redirect to root
+        
         } catch (error) {
             console.error('Logout failed:', error);
             alert('Failed to logout. Please try again.');

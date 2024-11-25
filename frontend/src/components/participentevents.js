@@ -37,8 +37,13 @@ const SymposiumEvents = () => {
                         <p>{event.description}</p>
                         <p>Type: {event.type}</p>
                         <p>
-                            Date: {new Date(event.date).toLocaleDateString()} at{' '}
-                            {new Date(event.date).toLocaleTimeString()}
+                        Registration Start At: {new Date(event.registrationStart).toLocaleDateString()} at{' '}
+                            {new Date(event.registrationStart).toLocaleTimeString()}
+                        </p>
+
+                        <p>
+                        Registration End At: {new Date(event.registrationEnd).toLocaleDateString()} at{' '}
+                            {new Date(event.registrationEnd).toLocaleTimeString()}
                         </p>
                         
                     </div>

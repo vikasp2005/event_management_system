@@ -65,20 +65,20 @@ const ManageVenue = () => {
     };
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Manage Venue</h1>
+        <div className="p-8 bg-gray-100 min-h-screen">
+            <h1 className="text-3xl font-semibold mb-6 text-center">Manage Venues</h1>
 
             {/* Add Venue Form */}
-            <form onSubmit={handleAddVenue} className="mb-6 space-y-4">
-                {error && <p className="text-red-500">{error}</p>}
-                {success && <p className="text-green-500">{success}</p>}
+            <form onSubmit={handleAddVenue} className="bg-white p-6 rounded shadow-md mb-8 max-w-lg mx-auto space-y-4">
+                {error && <p className="text-red-500 text-center">{error}</p>}
+                {success && <p className="text-green-500 text-center">{success}</p>}
                 <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Venue Name"
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded"
                     required
                 />
                 <input
@@ -87,7 +87,7 @@ const ManageVenue = () => {
                     value={formData.incharge}
                     onChange={handleInputChange}
                     placeholder="In-Charge Name"
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded"
                     required
                 />
                 <input
@@ -96,14 +96,14 @@ const ManageVenue = () => {
                     value={formData.capacity}
                     onChange={handleInputChange}
                     placeholder="Capacity"
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded"
                     required
                 />
                 <select
                     name="type"
                     value={formData.type}
                     onChange={handleInputChange}
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded"
                 >
                     <option value="Seminar Hall">Seminar Hall</option>
                     <option value="Computer Lab">Computer Lab</option>
@@ -114,32 +114,32 @@ const ManageVenue = () => {
                     value={formData.department}
                     onChange={handleInputChange}
                     placeholder="Department"
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded"
                     required
                 />
-                <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+                <button type="submit" className="bg-blue-500 text-white p-2 w-full rounded hover:bg-blue-600">
                     Add Venue
                 </button>
             </form>
 
             {/* Venue List */}
-            <h2 className="text-xl font-bold mb-4">Existing Venues</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center">Existing Venues</h2>
             {venues.length === 0 ? (
-                <p>No venues available.</p>
+                <p className="text-center text-gray-600">No venues available.</p>
             ) : (
-                <ul className="space-y-4">
+                <ul className="space-y-6 max-w-4xl mx-auto">
                     {venues.map((venue) => (
-                        <li key={venue._id} className="border p-4 rounded flex justify-between items-center">
+                        <li key={venue._id} className="bg-white p-6 rounded shadow-md flex justify-between items-center">
                             <div>
-                                <h3 className="font-bold">{venue.name}</h3>
-                                <p>In-Charge: {venue.incharge}</p>
-                                <p>Capacity: {venue.capacity}</p>
-                                <p>Type: {venue.type}</p>
-                                <p>Department: {venue.department}</p>
+                                <h3 className="text-xl font-bold">{venue.name}</h3>
+                                <p className="text-gray-700">In-Charge: {venue.incharge}</p>
+                                <p className="text-gray-700">Capacity: {venue.capacity}</p>
+                                <p className="text-gray-700">Type: {venue.type}</p>
+                                <p className="text-gray-700">Department: {venue.department}</p>
                             </div>
                             <button
                                 onClick={() => handleDeleteVenue(venue._id)}
-                                className="bg-red-500 text-white p-2 rounded"
+                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                             >
                                 Delete
                             </button>

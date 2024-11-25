@@ -307,4 +307,28 @@ router.delete("/events/:id", isAuthenticated, authorizeRole('event_coordinator')
 });
 
 
+
+// Get participants of an event
+router.get('/:id/participants', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const event = await Event.findById(id).populate('registrationForm','registeredParticipants.participantId');
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found.' });
+        }
+        const registrationForm= event.registrationForm;
+
+        const participants = event.registeredParticipants.map((participant) => ({
+            participantData: participant.participantData,
+        }));
+
+        res.status(200).json({ registrationForm,participants });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching participants.' });
+    }
+});
+
+
 export default router;

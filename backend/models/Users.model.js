@@ -2,14 +2,14 @@ import mongoose from 'mongoose';
 
 const participantSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true },
-        rollNo: { type: String, required: true, unique: true },
-        email: { type: String, required: true, unique: true },
-        dept: { type: String, required: true },
-        password: { type: String, required: true },
-        yearOfStudy: { type: Number, required: true },
-        passOutYear: { type: Number, required: true },
-        section: { type: String, required: true },
+        name: { type: String },
+        rollNo: { type: String, unique: true },
+        email: { type: String, unique: true },
+        dept: { type: String },
+        password: { type: String },
+        yearOfStudy: { type: Number },
+        passOutYear: { type: Number },
+        section: { type: String },
     },
     { timestamps: true }
 );
@@ -20,10 +20,10 @@ export const Participant = mongoose.model('Participant', participantSchema);
 
 const eventCoordinatorSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true },
-        clubName: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
+        name: { type: String },
+        clubName: { type: String },
+        email: { type: String, unique: true },
+        password: { type: String },
     },
     { timestamps: true }
 );
@@ -35,9 +35,9 @@ export const EventCoordinator = mongoose.model('EventCoordinator', eventCoordina
 
 const adminSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
+        name: { type: String },
+        email: { type: String, unique: true },
+        password: { type: String },
     },
     { timestamps: true }
 );

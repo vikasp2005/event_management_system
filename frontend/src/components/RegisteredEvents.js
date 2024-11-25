@@ -30,10 +30,7 @@ const RegisteredEvents = () => {
                         <h2 className="font-bold text-lg">{event.name}</h2>
                         <p>{event.description}</p>
                         <p>Type: {event.type}</p>
-                        <p>
-                            Date: {new Date(event.date).toLocaleDateString()} at{' '}
-                            {new Date(event.date).toLocaleTimeString()}
-                        </p>
+                        
                         
                     </div>
                 ))}
